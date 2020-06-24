@@ -237,6 +237,16 @@ def logout():
 app.jinja_env.filters['datetimeformat'] = format_datetime
 app.jinja_env.filters['gravatar'] = gravatar_url
 
+
+@app.route('/login_check', methods=['GET', 'POST'])
+def login_check():
+    if g.user:
+        flash('login check')
+    else:
+        flash('login please')
+    return render_template('login_check.html')
+
+
 if __name__ == '__main__':
     init_db()
     app.run(host='0.0.0.0')
